@@ -1,0 +1,28 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: shorten a user-provided long url into tiny url
+Resources:
+  urlshorten:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.7
+      CodeUri: s3://code-pipeline-2019-06-24/buildoutput.zip
+      Description: shorten a user-provided long url into tiny url
+      MemorySize: 128
+      Timeout: 3
+      Role: 'arn:aws:iam::007325904473:role/url_shortener_role'
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /
+            Method: POST
+        Api2:
+          Type: Api
+          Properties:
+            Path: '/{proxy+}'
+            Method: ANY
+      Environment:
+        Variables:
+          MY_DOMAIN: 'https://leichen.xyz/'
