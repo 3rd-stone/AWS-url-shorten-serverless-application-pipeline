@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Compiling the Python code...
+      #- pip install #your package -t .
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - pwd
+      - ls -al
+artifacts:
+  files:
+- '**/*'
