@@ -1,5 +1,3 @@
-//这个文件没啥用啊
-
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: 'AWS::Serverless-2016-10-31'
 Description: shorten a user-provided long url into tiny url
@@ -9,7 +7,7 @@ Resources:
     Properties:
       Handler: lambda_function.lambda_handler
       Runtime: python3.7
-      CodeUri: s3://code-pipeline-2019-06-24/buildoutput.zip
+      CodeUri: ./urlshortenfunctions
       Description: shorten a user-provided long url into tiny url
       MemorySize: 128
       Timeout: 3
@@ -28,3 +26,4 @@ Resources:
       Environment:
         Variables:
           MY_DOMAIN: 'https://leichen.xyz/'
+          REGION: 'us-east-1'
