@@ -1,16 +1,14 @@
 version: 0.2
 
 phases:
-  build:
+  install:
     commands:
       - echo Build started on `date`
-      - echo Compiling the Python code...
+      - aws cloudformation package --template-file samTemplate.yaml --s3-bucket code-pipeline-2019-06-24 --output-template-file outputSamTemplate.yaml
       #- pip install #your package -t .
-  post_build:
-    commands:
-      - echo Build completed on `date`
-      - pwd
-      - ls -al
 artifacts:
+  type: zip
   files:
-    - '**/*'
+    #- '**/*'
+    - samTemplate.yaml
+    - outputSamTemplate.yaml
