@@ -14,5 +14,3 @@ artifacts:
     #- '**/*'
     - samTemplate.yaml
     - outputSamTemplate.yaml
-  discard-paths: yes
-  name: outputbuild
