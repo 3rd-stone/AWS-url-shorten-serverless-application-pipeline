@@ -9,7 +9,7 @@ phases:
       - aws cloudformation package --template-file samTemplate.yaml --s3-bucket code-pipeline-2019-06-24 --output-template-file outputSamTemplate.yaml
       #- pip install #your package -t .
 artifacts:
-  type: zip
+  #type: zip
   files:
     #- '**/*'
     - samTemplate.yaml
