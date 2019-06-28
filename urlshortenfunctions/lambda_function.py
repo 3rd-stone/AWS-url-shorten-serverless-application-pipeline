@@ -6,6 +6,7 @@ from string import ascii_letters, digits
 
 #environmental variables
 my_domain = os.getenv('MY_DOMAIN')
+region = os.getenv('REGION')
 
 #62 letters from a-zA-Z0-9
 string_62 = ascii_letters + digits
@@ -36,11 +37,11 @@ def url_shorten(event, context):
     
     #get lattest id
     try:
-        lattest_ddb = boto3.resource('dynamodb', region_name='us-east-1').Table('lattest_id_for_url_shortener_table')
+        lattest_ddb = boto3.resource('dynamodb', region_name = region).Table('lattest_id_for_url_shortener_table')
         response = lattest_ddb.get_item(Key={'lattest': 'lattest'})
         counts = int(response.get('Item').get('counts',0))    #another possible way is self keys increase in database, global variables and decoration will not work!
 
-        ddb = boto3.resource('dynamodb', region_name='us-east-1').Table('url_shortener_table')
+        ddb = boto3.resource('dynamodb', region_name = region).Table('url_shortener_table')
         Url = event['url']       #get long url
         TinyId = changeBase(counts,62)       #Tiny id
         shorturl = my_domain + TinyId       #short url
@@ -62,7 +63,7 @@ def url_shorten(event, context):
 
 def url_direct(event, context):
     
-    ddb = boto3.resource('dynamodb', region_name = 'us-east-1').Table('url_shortener_table')
+    ddb = boto3.resource('dynamodb', region_name = region).Table('url_shortener_table')
     TinyId = event['path'][1:]
     
     try:
@@ -89,7 +90,7 @@ def lattest_id_increment(event,context):
     '''
     
     try:
-        dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
+        dynamodb = boto3.resource('dynamodb', region_name = region)
         table = dynamodb.Table('lattest_id_for_url_shortener_table')
 
         lattest = "lattest"
