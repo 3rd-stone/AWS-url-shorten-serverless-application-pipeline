@@ -1,6 +1,8 @@
 import boto3
 import os
 import json
+from url_shorten import url_shorten
+from url_direct import url_direct
 
 #environmental variables
 my_domain = os.getenv('MY_DOMAIN')
