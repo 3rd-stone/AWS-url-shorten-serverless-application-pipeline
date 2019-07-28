@@ -1,7 +1,10 @@
 import boto3
-import random
+import random, os
 from string import ascii_letters, digits
 
+#environmental variables
+my_domain = os.getenv('MY_DOMAIN')
+region = os.getenv('REGION')
 
 #62 letters from a-zA-Z0-9
 string_62 = ascii_letters + digits
@@ -20,7 +23,7 @@ def url_shorten(event, context):
     try:
         ddb = boto3.resource('dynamodb', region_name = region).Table('url_shortener_table')
         Url = event['url']       #get long url
-        TinyId = random.choices(string_62,k=4)      #Tiny id
+        TinyId = ''.join([str(i) for i in random.choices(string_62,k=4)])      #Tiny id
         shorturl = my_domain + TinyId       #short url
 
         response = ddb.put_item(

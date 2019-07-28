@@ -1,4 +1,8 @@
-import boto3
+import boto3, os
+
+#environmental variables
+my_domain = os.getenv('MY_DOMAIN')
+region = os.getenv('REGION')
 
 def url_direct(event, context):
     
