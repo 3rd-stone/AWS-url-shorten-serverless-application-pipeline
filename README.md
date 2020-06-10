@@ -4,7 +4,7 @@ Url Shorten Web Application
 
 A serverless application based on AWS API Gateway + Lambda + DynamoDB, aiming at shortening long user-provided urls into short urls.
 
-A live demo shown on :[leichen.xyz](https://leichen.xyz)
+A live demo shown on :[here](https://nvj8cs7lw5.execute-api.us-east-1.amazonaws.com/Stage)
 
 # Running
 
